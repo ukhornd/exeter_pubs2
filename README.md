@@ -9,5 +9,3 @@ This should be updated to make the document writing easier
 * [Graph Theory In Python](https://www.python-course.eu/graphs_python.php)
 * [PDF to Text Conversion](https://www.xpdfreader.com/download.html)
 ### Libraries Used: 
-* [NetworkX](https://networkx.github.io/)
-* [Plot.ly](https://plot.ly/python/)
