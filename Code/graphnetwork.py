@@ -138,11 +138,45 @@ def Draw_Graph(G, nodedict):
     for node, adjacencies in G.adjacency():
         node_trace['marker']['size'].append(10 + len(nodedict[node]["In"]) * 5)
         node_trace['marker']['color'].append(nodedict[node]["InC"])
-        node_info = '<b>NP{0}</b><br>In: {1}<br>Out: {2}<br>Individual Refernces: {3}'.format(
+        node_info = '<b>NP{0}</b><br>In: {1}<br>Out: {2}<br>Individual References: {3}'.format(
             node, len(nodedict[node]["In"]), len(nodedict[node]["Out"]), nodedict[node]["InC"])
         node_trace['text'].append(node_info)
 
-    fig = go.Figure(data=go.Data([edge_trace, node_trace]),
+    trace3_list = []
+
+    middle_node_trace = go.Scatter(
+        x=[],
+        y=[],
+        text=[],
+        mode='markers',
+        hoverinfo='text',
+        marker=go.Marker(
+            opacity=1,
+            color="#ffb84d",
+            line=dict(width=0.5, color='#000000')
+        )
+    )
+    for edge in G.edges(data=True):
+        trace3 = go.Scatter(
+            x=[],
+            y=[],
+            mode='lines',
+            line=go.Line(color='rgb(210,210,210)'),
+            hoverinfo='none'
+        )
+        x0, y0 = G.node[edge[0]]['pos']
+        x1, y1 = G.node[edge[1]]['pos']
+        trace3['x'] += [x0, x1, None]
+        trace3['y'] += [y0, y1, None]
+        trace3_list.append(trace3)
+        print(edge)
+
+        middle_node_trace['x'].append((x0 + x1) / 2)
+        middle_node_trace['y'].append((y0 + y1) / 2)
+        middle_node_trace['text'].append(
+            "<b>NP{0}</b> --> <b>NP{1}</b><br>No. of references: {2}".format(edge[0], edge[1], edge[2]['no_of_references']))
+
+    fig = go.Figure(data=go.Data([edge_trace, node_trace, middle_node_trace]),
                     layout=go.Layout(
         title='<br>UKHO References Network Graph',
         titlefont=dict(size=16),
