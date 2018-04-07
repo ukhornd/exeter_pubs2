@@ -1,0 +1,3 @@
+#Used to stop sensitive data being synced from these folders
+PDFs/*
+Text files/*
