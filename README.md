@@ -1,7 +1,8 @@
 UKHO Exeter Mathematics School Project 4 (publications) 2018
 ===============================================
-This should be updated to make the document writing easier
--------------------------------------------------------------------------
+## Important
+Before use, a folder called "PDFs" and one called "Text files" should be added to the root directory of the project. ANy publications you wish to scan should be added. This has not been done here due to the move to a public repository.
+
 ### Style guide used: 
 * [Pep-8 For Python](https://www.python.org/dev/peps/pep-0008/)
 
